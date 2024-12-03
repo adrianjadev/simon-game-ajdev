@@ -56,7 +56,7 @@ function checkAnswer(currentLevel) {
         if (userClickedPattern.length === gamePattern.length) {
             correctSound.play();
 
-            if (level === 5){
+            if (level === 3){
                 $("#level-title").text("Good work 🥳! Keep it up!");
                 ladderUp();
                 
