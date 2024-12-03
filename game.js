@@ -24,6 +24,11 @@ function playBackground(){
     gameBackground.loop = true;
 }
 
+// pauseBackground()
+function pauseBackground(){
+    gameBackground.pause();
+}
+
 // Touchstart event listner for mobile app
 $(document).on("touchstart", () => {
     if (!started) { 
@@ -80,7 +85,6 @@ function checkAnswer(currentLevel) {
             if (level === 3){
                 $("#level-title").text("Good work 🥳! Keep it up!");
                 ladderUp();
-                
                 setTimeout(() => {
                     nextSequence();
                 }, 3000);
@@ -89,24 +93,27 @@ function checkAnswer(currentLevel) {
             else {
                 setTimeout(() => {
                     nextSequence();
-                }, 1000);
+                }, 3000);
             }
         }
     } else {
+        pauseBackground();
         wrongSound.play();
-        startOver();
 
         $("body").addClass("game-over");
         $("#level-title").text(`Game Over, Press Any Key to Restart the game!`);
 
         setTimeout(() => {
             $("body").removeClass("game-over");
+            startOver();
         }, 200);
     }
 }
 
 // nextSequence()
 function nextSequence() {
+
+    playBackground();
 
     userClickedPattern = [];
 
