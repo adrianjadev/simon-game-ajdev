@@ -10,11 +10,42 @@ body {
   color: #FEF2BF;
 }
 
+#footer {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  margin:  5%;
+  color: #FEF2BF;
+}a
+
+#heart-yellow {
+  font-size: 2em;
+}
+
+#footer-sign {
+  font-size: 1.5rem;
+  color: ;
+}
+
 .container-one {
   display: block;
   width: 50%;
   margin: auto;
+}
 
+.container-two {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+
+.container-three {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+
+.hidden-container {
+  display: none;
 }
 
 .btn {
@@ -31,8 +62,17 @@ body {
   opacity: 0.8;
 }
 
+/* container-two */
 .red {
   background-color: red;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.yellow {
+  background-color: yellow;
 }
 
 .green {
@@ -42,9 +82,13 @@ body {
 .blue {
   background-color: blue;
 }
+ 
+.indigo {
+  background-color: indigo;
+}
 
-.yellow {
-  background-color: yellow;
+.violet {
+  background-color: violet;
 }
 
 .pressed {

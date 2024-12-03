@@ -1,4 +1,5 @@
-var buttonColours = ["red", "blue", "green", "yellow"];
+
+var buttonColours = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
 
 var gamePattern = [];
 var userClickedPattern = [];
@@ -7,16 +8,16 @@ var started = false;
 var level = 0;
 
 // Sounds
-const blueSound = new Audio("./sounds/blue.mp3");
-const greenSound = new Audio("./sounds/green.mp3");
-const yellowSound = new Audio("./sounds/yellow.mp3");
-const redSound = new Audio("./sounds/red.mp3");
-const wrongSound = new Audio("./sounds/wrong.mp3");
+const correctSound = new Audio("./sounds/correct-answer.mp3");
+const wrongSound = new Audio("./sounds/wrong-answer2.mp3");
+const gameStart = new Audio("./sounds/game-start.mp3");
+const gameCountdown = new Audio("./sounds/game-countdown.mp3");
+const winningLevel = new Audio("./sounds/winning-levels2.mp3");
 
 // Keypress/(Keydown) event listener
 $(document).on("keydown", () => {
-    if (!started) {
-        $("#level-title").text(`Level ${level}`);
+    if (!started) {    
+        $("#level-title").text(`Level ${level - 1}`);
         nextSequence();
         started = true;
     }
@@ -42,23 +43,37 @@ function startOver(){
     started = false;
 }
 
+// ladderUp()
+function ladderUp(){
+    winningLevel.play();
+}
+
 // checkAnswer()
 function checkAnswer(currentLevel) {
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]){
         console.log("Success");
 
         if (userClickedPattern.length === gamePattern.length) {
-            
-    // Play the next sequence after 1000 millisecond
-            setTimeout(() => {
-                nextSequence();
-            }, 1000);
+            correctSound.play();
+
+            if (level === 5){
+                $("#level-title").text("Good work 🥳! Keep it up!");
+                ladderUp();
+                
+                setTimeout(() => {
+                    nextSequence();
+                }, 3000);
+            } 
+
+            else {
+                setTimeout(() => {
+                    nextSequence();
+                }, 1000);
+            }
         }
     } else {
         wrongSound.play();
         startOver();
-
-        console.log(`started: ${started}, gamePattern: ${gamePattern}, level: ${level} `);
 
         $("body").addClass("game-over");
         $("#level-title").text(`Game Over, Press Any Key to Restart the game!`);
@@ -66,7 +81,6 @@ function checkAnswer(currentLevel) {
         setTimeout(() => {
             $("body").removeClass("game-over");
         }, 200);
-        // console.log("Sorry! wrong answer!");
     }
 }
 
@@ -75,63 +89,29 @@ function nextSequence() {
 
     userClickedPattern = [];
 
-    var randomNumber = (Math.floor(Math.random() * 4));
+    var randomNumber = (Math.floor(Math.random() * 7));
     var randomChosenColour = buttonColours[randomNumber];
     gamePattern.push(randomChosenColour);
 
     // Incrementing the Level # text
     level += 1;
-    $("#level-title").text(`Level ${level}`)
+    $("#level-title").text(`Level ${level}`);
 
     // Logs for tests
-    // console.log(`Game Pattern: ${gamePattern}`);
-    // console.log(`UserClicked Pattern: ${userClickedPattern}`)
+    console.log(`Game Pattern: ${gamePattern}`);
 
     playSound(randomChosenColour);
     
 }
 
-function playSound(name) {
-    switch (name) {
-        case "green":
-            // console.log("green");
-            $("#green").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-            greenSound.play();
-            break;
-
-        case "yellow":
-            // console.log("yellow");
-            $("#yellow").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-            yellowSound.play();
-            break;
-
-        case "red":
-            // console.log("red");
-            $("#red").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-            redSound.play();
-            break;
-
-        case "blue":
-            // console.log("blue");
-            $("#blue").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-            blueSound.play();
-            break;
-    
-        default:
-            break;
-    }
+// playSound() -- refactored
+function playSound(colorName){
+    $(`#${colorName}`).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    var newSound = new Audio(`./sounds/${colorName}.mp3`);
+    newSound.play();
 }
 
-// Refactored playSound
-
-// function playSoundAnswer(name){
-//     var newSound = new Audio("./sounds" + name + ".mp3")
-//     newSound.play();
-// }
-
-// --------
-
-// animatePress
+// animatePress()
 function animatePress(currentColour) {
     $(`.${currentColour}`).addClass("pressed");
 
