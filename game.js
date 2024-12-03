@@ -98,7 +98,7 @@ function nextSequence() {
     $("#level-title").text(`Level ${level}`);
 
     // Logs for tests
-    console.log(`Game Pattern: ${gamePattern}`);
+    // console.log(`Game Pattern: ${gamePattern}`);
 
     playSound(randomChosenColour);
     
