@@ -23,7 +23,13 @@ body {
 
 #footer-sign {
   font-size: 1.5rem;
-  color: ;
+  color: #FEF2BF;
+
+  .pressed {
+    box-shadow: 0 0 20px white;
+    background-color: grey;
+  }
+  
 }
 
 .container-one {
@@ -62,7 +68,7 @@ body {
   opacity: 0.8;
 }
 
-/* container-two */
+/* Colors */
 .red {
   background-color: red;
 }
@@ -91,7 +97,3 @@ body {
   background-color: violet;
 }
 
-.pressed {
-  box-shadow: 0 0 20px white;
-  background-color: grey;
-}

@@ -13,15 +13,36 @@ const wrongSound = new Audio("./sounds/wrong-answer2.mp3");
 const gameStart = new Audio("./sounds/game-start.mp3");
 const gameCountdown = new Audio("./sounds/game-countdown.mp3");
 const winningLevel = new Audio("./sounds/winning-levels2.mp3");
+const gameBackground = new Audio("./sounds/bg-sound.mp3");
 
-// Keypress/(Keydown) event listener
-$(document).on("keydown", () => {
-    if (!started) {    
+//playBackground() in loop
+function playBackground(){
+    gameBackground.muted = true;
+    gameBackground.play().then(() => {
+        gameBackground.muted = false;
+    })
+    gameBackground.loop = true;
+}
+
+// Touchstart event listner for mobile app
+$(document).on("touchstart", () => {
+    if (!started) { 
+        playBackground();   
         $("#level-title").text(`Level ${level - 1}`);
         nextSequence();
         started = true;
     }
-})
+});
+
+// Keypress/(Keydown) event listener
+$(document).on("keydown", () => {
+    if (!started) {    
+        playBackground();
+        $("#level-title").text(`Level ${level - 1}`);
+        nextSequence();
+        started = true;
+    }
+});
 
 // Click eventlistener
 $(".btn").click(function() {
