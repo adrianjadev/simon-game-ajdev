@@ -1,8 +1,8 @@
-# simon-game-ajdev
+# Mini-game Project: "simon-game-ajdev"
 
 --------
 
-!["simon game" sample gameplay](simon-game.ajdev.gif);
+!["simon game" sample gameplay](./simon-game-ajdev.gif)
 
 --------
 
