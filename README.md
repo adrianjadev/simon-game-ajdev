@@ -2,7 +2,7 @@
 
 --------
 
-!["simon game" sample gameplay](./simon-game-ajdev.gif)
+!["simon game" sample gameplay](./simon-game-ajdev2.gif)
 
 --------
 
