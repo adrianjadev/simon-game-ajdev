@@ -93,7 +93,7 @@ function checkAnswer(currentLevel) {
             else {
                 setTimeout(() => {
                     nextSequence();
-                }, 3000);
+                }, 1000);
             }
         }
     } else {
